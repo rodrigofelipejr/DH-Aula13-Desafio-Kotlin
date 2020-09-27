@@ -6,9 +6,9 @@ class ProfessorTitular(
         override val codigo: Int,
         override var nome: String,
         override var sobrenome: String,
-        override var tempoCasa: Int,
         var especialidade: String
 ) : IProfessor {
+    override var tempoCasa: Int = 0
 
     override fun equals(codigo: Any?): Boolean {
         return (this.codigo == codigo)

@@ -6,6 +6,7 @@ import br.com.house.digital.kotlin.Interfaes.IProfessor
 import br.com.house.digital.kotlin.Matricula.Matricula
 import br.com.house.digital.kotlin.Professor.ProfessorAdjunto
 import br.com.house.digital.kotlin.Professor.ProfessorTitular
+import br.com.house.digital.kotlin.Utils.dateToString
 
 class DigitalHouseManager() {
     private val alunos: MutableSet<Aluno> = mutableSetOf()
@@ -14,7 +15,7 @@ class DigitalHouseManager() {
     private val matriculas: MutableSet<Matricula> = mutableSetOf()
 
     fun registrarCurso(codigoCurso: Int, nome: String, quantidadeMaximaAlunos: Int) {
-        val curso = Curso(codigoCurso, nome, null, null, quantidadeMaximaAlunos, null)
+        val curso = Curso(codigoCurso, nome, quantidadeMaximaAlunos)
         cursos.add(curso)
     }
 
@@ -23,12 +24,12 @@ class DigitalHouseManager() {
     }
 
     fun registrarProfessorAdjunto(codigoProfessor: Int, nome: String, sobrenome: String, quantidadeHoras: Int) {
-        val professor = ProfessorAdjunto(codigoProfessor, nome, sobrenome, 0, quantidadeHoras)
+        val professor = ProfessorAdjunto(codigoProfessor, nome, sobrenome, quantidadeHoras)
         professores.add(professor)
     }
 
     fun registrarProfessorTitular(codigoProfessor: Int, nome: String, sobrenome: String, especialidade: String) {
-        val professor = ProfessorTitular(codigoProfessor, nome, sobrenome, 0, especialidade)
+        val professor = ProfessorTitular(codigoProfessor, nome, sobrenome, especialidade)
         professores.add(professor)
     }
 
@@ -92,6 +93,27 @@ class DigitalHouseManager() {
         curso.professorTitular = professorTitular as ProfessorTitular
         curso.professorAdjunto = professorAdjunto as ProfessorAdjunto
 
-        println("Professores T:${professorTitular.nome} e A: ${professorAdjunto.nome} foram alocados ao curso ${curso.nome} com sucesso!")
+        println("Professores T: ${professorTitular.nome} e A: ${professorAdjunto.nome} foram alocados ao curso ${curso.nome} com sucesso!")
+    }
+
+    fun consultarMatriculas(codigoAluno: Int) {
+        val aluno = alunos.find { it.equals(codigoAluno) }
+
+        if (aluno == null) {
+            println("Não encontrado aluno com o código $codigoAluno")
+            return
+        }
+
+        val minhasMatriculas = matriculas.filter { it.aluno.codigo == aluno.codigo }
+
+        if (!minhasMatriculas.isNullOrEmpty()) {
+            println("Matrículas do aluno: ${aluno.nome}")
+            minhasMatriculas.forEach {
+                println("Curso: ${it.curso.nome} - Data da matrícula: ${it.dataMatricula.dateToString()}")
+            }
+        } else {
+            println("Não foi encontrado nenhuma matrícula para o aluno ${aluno.nome}.")
+        }
+
     }
 }

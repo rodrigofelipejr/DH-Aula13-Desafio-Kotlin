@@ -8,11 +8,11 @@ import br.com.house.digital.kotlin.Professor.ProfessorTitular
 class Curso(
         override val codigo: Int,
         override var nome: String,
-        var professorTitular: ProfessorTitular?,
-        var professorAdjunto: ProfessorAdjunto?,
         var quantidadeMaximaAlunos: Int,
-        var alunos: MutableSet<Aluno>?
 ) : IItem {
+    var professorTitular: ProfessorTitular? = null
+    var professorAdjunto: ProfessorAdjunto? = null
+    var alunos: MutableSet<Aluno>? = null
 
     override fun equals(codigo: Any?): Boolean {
         return (this.codigo == codigo)

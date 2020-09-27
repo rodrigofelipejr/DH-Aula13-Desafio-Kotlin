@@ -5,7 +5,8 @@ import br.com.house.digital.kotlin.Curso.Curso
 import java.util.*
 
 data class Matricula(val aluno: Aluno, val curso: Curso) {
-    private lateinit var dataMatricula: Date
+    var dataMatricula: Date
+        private set
 
     init {
         dataMatricula = Date()
