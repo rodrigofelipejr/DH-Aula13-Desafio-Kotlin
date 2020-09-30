@@ -1,4 +1,4 @@
-# Desafio Kotlin - Modulo 1
+# Desafio Kotlin - Módulo 1
 
 Resolução do exercício proposto no documento [DESAFIO KOTLIN](https://github.com/rodrigofelipejr/DH-Aula13-DesafioKotlin/blob/feature/refactoring/file/AULA%2013%20-%20DESAFIO%20KOTLIN%20-%20EXERC%C3%8DCIO.docx.pdf). 
 
